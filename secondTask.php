@@ -32,14 +32,24 @@ $days = array(1 => 31, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 =
                 $monthsWith28Days[] = $months[$monthNumber];
             }
         }
+
+
         $monthsString = implode(', ', $monthsWith31Days);
         echo '<p>Metuose yra ' . count($monthsWith31Days) . ' mėnesiai turintys 31 dieną (' . $monthsString . ') </p>';
         $monthsString = implode(', ', $monthsWith30Days);
         echo '<p>Metuose yra ' . count($monthsWith30Days) . ' mėnesiai turintys 30 dienų (' . $monthsString . ') </p>';
         $monthsString = implode(', ', $monthsWith28Days);
         echo '<p>Metuose yra ' . count($monthsWith28Days) . ' mėnesiai turintys 28 dienas (' . $monthsString . ') </p>';
-        echo '<p>Metuose yra ' .array_sum($days) . ' dienos </p>';
+        echo '<p>Metuose yra ' . array_sum($days) . ' dienos </p>';
+        echo '<p> </p>';
+        foreach ($months as $key => $value) {
+            if ($key <= 12) {
+                echo $value . " yra " . $key . "  mėnuo ir turi " . $days[$key] . " d.<br>";
+
+            }
+        }
         ?>
+
     </div>
 
 </div>
