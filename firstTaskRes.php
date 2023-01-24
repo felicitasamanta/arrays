@@ -17,6 +17,7 @@
         <h1 class="text-center mb-3"> Temperatūros</h1>
         <div>
             <?php
+
             if (isset($_POST["temperatures"]) && !empty($_POST["temperatures"])) {
                 $temperatures = preg_split("/[\s,]+/", $_POST["temperatures"]);
                 $valid = true;
@@ -26,14 +27,15 @@
                         break;
                     }
                 }
+                $unique_temperatures = array_unique($temperatures);
+                sort($unique_temperatures);
                 if ($valid) {
-                    sort($temperatures);
-                    echo '<div>Vidutinė temperatūra: '. array_sum($temperatures) / count($temperatures) . "°C" .'</div>';
-                    echo '<div>Viso nuoskaitų: '.count($temperatures) .'</div>';
-                    echo '<div>Dvi didžiausios temperatūros: '. end($temperatures). "°C" .', '. prev($temperatures). "°C" .'</div>';
-                    echo '<div>Dvi mažiausios temperatūros: '. $temperatures[0] . "°C" .','. $temperatures[1] . "°C" .'</div>';
+                    echo '<div>Vidutinė temperatūra: ' . array_sum($temperatures) / count($temperatures) . "°C" . '</div>';
+                    echo '<div>Viso nuoskaitų: ' . count($temperatures) . '</div>';
+                    echo '<div>Dvi didžiausios temperatūros: ' . $unique_temperatures[count($unique_temperatures) - 1] . "°C" . ', ' . $unique_temperatures[count($unique_temperatures) - 2] . "°C" . '</div>';
+                    echo '<div>Dvi mažiausios temperatūros: ' . $unique_temperatures[0] . "°C" . ', ' . $unique_temperatures[1] . "°C" . '</div>';
                 } else {
-                    echo  '<div>Please enter only digits.</div>';
+                    echo '<div>Please enter only digits.</div>';
                 }
             } else {
                 echo '<div>Please enter temperatures</div>';
